@@ -1,7 +1,11 @@
 Select *
 From [Portfolio Project]..CovidDeaths
-where continent is not null     
+where continent is not null      -- to prevent countries from being grouped as a continent
 order by 3,4
+
+--Select *
+--From [Portfolio Project]..CovidVaccinations
+--order by 3,4
 
 --The first step is to select the data that is going to be utlilized for the project.
 -- ordering the data by location and date
@@ -32,7 +36,7 @@ order by ContractionRate desc
 
 -- We are going to examine the total death count from COVID-19 across all countries
 -- Countries are going to be ordered by highest total death count to lowest total death count
-Select Location, sum(cast(total_deaths as int)) as TotalDeathCount
+Select Location, MAX(cast(total_deaths as int)) as TotalDeathCount
 From [Portfolio Project]..CovidDeaths
 where continent is not null
 Group by Location
@@ -40,9 +44,10 @@ order by TotalDeathCount desc
 
 -- We are going to examine the total death count from COVID-19 across all continents
 -- Continents are going to be ordered by highest total death count to lowest total death count
-Select continent, sum(cast(total_deaths as int)) as TotalDeathCount
+Select continent, (sum(cast(total_deaths as int))) as TotalDeathCount
 From [Portfolio Project]..CovidDeaths
-where continent is not null
+where continent is not null AND
+	date = '2022-05-06 00:00:00:000'
 Group by continent
 order by TotalDeathCount desc
 
