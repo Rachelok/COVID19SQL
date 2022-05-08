@@ -32,7 +32,7 @@ order by ContractionRate desc
 
 -- We are going to examine the total death count from COVID-19 across all countries
 -- Countries are going to be ordered by highest total death count to lowest total death count
-Select Location, MAX(cast(total_deaths as int)) as TotalDeathCount
+Select Location, sum(cast(total_deaths as int)) as TotalDeathCount
 From [Portfolio Project]..CovidDeaths
 where continent is not null
 Group by Location
