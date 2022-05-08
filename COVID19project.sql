@@ -1,11 +1,7 @@
 Select *
 From [Portfolio Project]..CovidDeaths
-where continent is not null      -- to prevent countries from being grouped as a continent
+where continent is not null     
 order by 3,4
-
---Select *
---From [Portfolio Project]..CovidVaccinations
---order by 3,4
 
 --The first step is to select the data that is going to be utlilized for the project.
 -- ordering the data by location and date
